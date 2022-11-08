@@ -11,7 +11,7 @@
             <ColumnDefinition Width="3*"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <ListView x:Name="ListUsers" Grid.Column="0" Margin="10">
+        <ListView x:Name="ListUsers" Grid.Column="0" Margin="10" SelectionChanged="ListUsers_SelectionChanged">
             <ListView.View>
                 <GridView>
                     <GridViewColumn DisplayMemberBinding="{Binding Path=id}">ИД</GridViewColumn>
@@ -29,11 +29,11 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
             <TextBox x:Name="NameUser" Margin="5" Grid.Row="0"/>
-            <TextBox x:Name="AgeUser" Margin="5" Grid.Row="1"/>
+            <TextBox x:Name="AgeUser" Margin="5" Grid.Row="1" />
             <Button Content="Добавить" Height="50"  Grid.Row="2"
                     Margin="5" Click="Button_Click"/>
             <Button Content="Редактировать" Grid.Row="3" 
-                    Margin="5" Height="50"/>
+                    Margin="5" Height="50" Click="Button_Click_1"/>
             <Button Content="Удалить" Grid.Row="4" 
                     Margin="5" Height="50"/>
         </Grid>

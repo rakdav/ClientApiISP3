@@ -25,6 +25,7 @@ namespace ClientApi
     public partial class MainWindow : Window
     {
         private HttpClient client;
+        private User? user;
         public MainWindow()
         {
             InitializeComponent();
@@ -56,6 +57,28 @@ namespace ClientApi
                 PostAsync("https://localhost:7063/api/users", content);
             string responseText = await response.Content.ReadAsStringAsync();
             await Load();
+        }
+
+        private async void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            await Edit();
+        }
+
+        private async Task Edit()
+        { 
+            user.Name = NameUser.Text;
+            user.Age=int.Parse(AgeUser.Text);
+            JsonContent content = JsonContent.Create(user);
+            using var response = await client.
+                PutAsync("https://localhost:7063/api/users", content);
+            string responseText = await response.Content.ReadAsStringAsync();
+            await Load();
+        }
+        private void ListUsers_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            user=ListUsers.SelectedItem as User;
+            NameUser.Text=user?.Name;
+            AgeUser.Text = user?.Age.ToString();
         }
     }
 }
