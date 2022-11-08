@@ -25,11 +25,17 @@
                 <RowDefinition Height="50"/>
                 <RowDefinition Height="50"/>
                 <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
             </Grid.RowDefinitions>
             <TextBox x:Name="NameUser" Margin="5" Grid.Row="0"/>
             <TextBox x:Name="AgeUser" Margin="5" Grid.Row="1"/>
-            <Button Content="Добавить" Grid.Row="2" Height="50" 
+            <Button Content="Добавить" Height="50"  Grid.Row="2"
                     Margin="5" Click="Button_Click"/>
+            <Button Content="Редактировать" Grid.Row="3" 
+                    Margin="5" Height="50"/>
+            <Button Content="Удалить" Grid.Row="4" 
+                    Margin="5" Height="50"/>
         </Grid>
     </Grid>
 </Window>
