@@ -35,7 +35,13 @@ namespace ClientApi
         {
             List<User>? list = await client.GetFromJsonAsync<List<User>>
                 ("https://localhost:7063/api/users");
-            Dispatcher.Invoke(()=>ListUsers.ItemsSource=list);
+            Dispatcher.Invoke(()=>
+            {
+                ListUsers.ItemsSource = null;
+                ListUsers.Items.Clear();
+                ListUsers.ItemsSource = list;
+            }
+           );
         }
 
         private async void Button_Click(object sender, RoutedEventArgs e)
@@ -44,13 +50,12 @@ namespace ClientApi
         }
         private async Task Save()
         {
-            UserWithooutId user = new UserWithooutId();
-            user.Name = NameUser.Text;
-            user.Age = int.Parse(AgeUser.Text);
+            User user = new User(NameUser.Text, int.Parse(AgeUser.Text));
             JsonContent content = JsonContent.Create(user);
             using var response = await client.
                 PostAsync("https://localhost:7063/api/users", content);
             string responseText = await response.Content.ReadAsStringAsync();
+            await Load();
         }
     }
 }
