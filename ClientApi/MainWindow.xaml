@@ -35,7 +35,7 @@
             <Button Content="Редактировать" Grid.Row="3" 
                     Margin="5" Height="50" Click="Button_Click_1"/>
             <Button Content="Удалить" Grid.Row="4" 
-                    Margin="5" Height="50"/>
+                    Margin="5" Height="50" Click="Button_Click_2"/>
         </Grid>
     </Grid>
 </Window>

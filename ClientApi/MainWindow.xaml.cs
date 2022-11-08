@@ -80,5 +80,18 @@ namespace ClientApi
             NameUser.Text=user?.Name;
             AgeUser.Text = user?.Age.ToString();
         }
+
+        private async void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            await Delete();
+        }
+
+        private async Task Delete()
+        {
+            using var response = await client.
+                DeleteAsync("https://localhost:7063/api/users/"+user?.id);
+            string responseText = await response.Content.ReadAsStringAsync();
+            await Load();
+        }
     }
 }
